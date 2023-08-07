@@ -1,7 +1,8 @@
 import logging
 import time
-
-from interface.rootview import RootViewController as Root
+from interface.rootview import RootViewController as RootView
+from model import Model
+from presenter import Presenter
 
 
 logger = logging.getLogger()
@@ -18,7 +19,15 @@ file_handler.setLevel(logging.DEBUG)
 logger.addHandler(stream_handler)
 logger.addHandler(file_handler)
 
+def main() -> None:
+    model = Model()
+    view =  RootView()
+    presenter = Presenter(model, view) 
+    presenter.run()
+
+
+
 
 if __name__ == '__main__':
-    root = Root()
-    root.mainloop()
+    logger.debug('Program Started')
+    main()
